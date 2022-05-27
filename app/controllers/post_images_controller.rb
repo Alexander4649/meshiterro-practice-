@@ -1,12 +1,11 @@
 class PostImagesController < ApplicationController
 
-  def new
+  def new #投稿データ新規作成
     @post_image = PostImage.new
   end
 
   
-  # 投稿データの保存
-  def create
+  def create # 投稿データの保存
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
     @post_image.save
@@ -14,7 +13,8 @@ class PostImagesController < ApplicationController
   end
 
 
-  def index
+  def index # 投稿データの取得
+    @post_images = PostImage.all
   end
 
   def show
@@ -24,8 +24,8 @@ class PostImagesController < ApplicationController
   end
 
   
-  # 投稿データのストロングパラメータ
-  private
+  
+  private # 投稿データのストロングパラメータ
 
   def post_image_params
     params.require(:post_image).permit(:shop_name, :image, :caption)
