@@ -10,10 +10,10 @@ class PostImage < ApplicationRecord
       end
    end
    
-   def get_image
-    unless image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+   def get_image # 画像が存在しない場合に表示する画像をActiveStorageに格納する
+    unless image.attached? # ❶画像がない時は
+      file_path = Rails.root.join('app/assets/images/no_image.jpg') # ❷ app/assets/imagesに格納されている no_images.jpgという画像を
+      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg') # ❸デフォルト画像としてActiveStorageに格納し、格納した画像を表示する
     end
     image
    end
