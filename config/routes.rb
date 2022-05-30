@@ -5,4 +5,6 @@
   resources :post_images, only:[:new, :create, :index, :show,:destroy]
 
   get "/homes/about" => "homes#about", as: "about"
+  
+  
 end
