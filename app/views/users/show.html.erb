@@ -3,6 +3,9 @@
 <div>
   <h3><%= @user.name %></h3>
   <%= image_tag @user.get_profile_image(100,100) %>
+  <% if @user == current_user %><%#ログインしているユーザーと現在画面表示されているユーザーが一致していることを確認するdeviseのヘルパーメソッド、falseの場合はプロフ編集できない#%>
+  <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p><%#編集ページへのリンク、link to 表示させるテキスト,リンク先URL[,オプション] #%>
+  <% end %>
 </div>
 
 <!-- ユーザーの投稿一覧 -->
