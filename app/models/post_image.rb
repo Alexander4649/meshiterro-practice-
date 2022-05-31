@@ -4,6 +4,9 @@ class PostImage < ApplicationRecord
    has_many :post_comments, dependent: :destroy# 投稿された画像に対して複数のコメントを持つことができる為、1:Nの関係になりhas_manyを使用する。
    has_many :favorites, dependent: :destroy# 投稿された画像に対して複数のイイね！を持つことができる為、1:Nの関係になりhas_manyを使用する。
    
+   validates :shop_name, presence: true#shop_nameが存在しているかを確認するバリデーション
+	 validates :image, presence: true#imageが存在しているかを確認するバリデーション
+   
    def get_image #特定の処理を名前で呼び出すメソッド、PostImageモデルの中に記述することでカラムを呼び出すようにこのメソッドを呼び出すことができる
       if image.attached?　　　　　　　　　　　　　　 # post_imageテーブルでIDが1のデータを持っていて、データから画像を表示させる場合の記述 
         image　　　　　　　　　　　　　　　　　　　　# @post_image = PostImage.find(1) : ID:1のレコードを取得し、@post_imageに格納する
