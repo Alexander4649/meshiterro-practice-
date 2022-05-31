@@ -6,6 +6,7 @@ class User < ApplicationRecord
          
          has_many :post_images, dependent: :destroy # アソシエーション(関連付け)1人のユーザーは複数の画像を投稿できる。1:Nの関係なので、has_manyを使用する。ユーザーが消えると画像も同時に消される。
          has_many :post_comments, dependent: :destroy# 同様に一人のユーザーは複数のコメントを行えるので1:Nの関係でアソシエーションをする。ユーザーが消えると、コメントも消される＝＞destroy
+         has_many :favorites, dependent: :destroy
          
          has_one_attached :profile_image # profile_imageという名前でActiveStorageでプロフィール画像を保存できるように設定
 
