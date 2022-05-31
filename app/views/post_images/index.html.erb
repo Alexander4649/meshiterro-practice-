@@ -7,6 +7,11 @@
     <%= image_tag post_image.get_image %><%#ユーザー登録画像の表示#%>
   <% end %>
   
+  <p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>
+  <!--  1. post_image.userで、投稿画像に紐づいたユーザーの情報(投稿したユーザーの情報)を取得できる
+        2. 「.user」の部分でUserモデルを使用しているため、Userモデルに記述しているget_profile_imageメソッドが使えるようになる
+        3. 結果、post_image.user.get_profile_imageと記述することで、投稿画像に紐づいたユーザーのプロフィール画像を表示できる -->
+  
   <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p> 
   <p>ショップ名：<%= post_image.shop_name %></p> <%# post_image変数のshop_nameカラムを表示します。 このカラムも、post_imageモデルに定義されています。#%>
   <p>説明：<%= post_image.caption %></p> <%#post_image変数のcaptionカラムを表示します。 このカラムも、post_imageモデルに定義されています。#%>
