@@ -20,7 +20,7 @@ class PostImagesController < ApplicationController
 
 
   def index # 投稿データの取得
-    @post_images = PostImage.all
+    @post_images = PostImage.page(params[:page])
   end
 
   def show

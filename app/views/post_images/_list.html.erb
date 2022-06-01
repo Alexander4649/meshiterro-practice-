@@ -10,3 +10,5 @@
   <p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>
 </div>
 <% end %>
+
+<%= paginate post_images %> <%#この部分テンプレートはユーザーの詳細画面と投稿画像の一覧画面で使われています#%>
