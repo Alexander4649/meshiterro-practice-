@@ -1,23 +1,35 @@
-<h1>画像投稿フォーム</h1>
-
-<!--バリデーション設定-->
- <% if @post_image.errors.any? %>
-   <%= @post_image.errors.count %>件のエラーが発生しました
-   <ul>
-     <% @post_image.errors.full_messages.each do |message| %>
-       <li><%= message %></li>
-     <% end %>
-   </ul>
- <% end %>
-
-<!--投稿フォーム-->
-
-  <%= form_with model: @post_image do |f| %>
-    <h4>画像</h4>
-      <%= f.file_field :image, accept: "image/*" %>
-    <h4>ショップ名</h4>
-      <%= f.text_field :shop_name %>
-    <h4>説明</h4>
-      <%= f.text_area :caption %>
-    <%= f.submit '投稿' %>
-  <% end %>
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <%# col-sm-10 => 画面幅が576px以上のときに12分割したグリッドの10分割分の幅をとる ※このときの10分割分の幅は親要素であるrowの幅に依存します。
+          col-md-5 => 画面幅が768px以上のときに12分割したグリッドの5分割分の幅をとる ※このときの10分割分の幅は親要素であるrowの幅に依存します。
+          「col」classの指定ではcol-[ブレークポイント]-[カラム数（分割されたグリッド数）]という形式でclassを指定します。
+           つまり、今回の例では画面幅が576px以上〜768px未満の時に10カラムの幅をとり、768px以上では5カラムの幅をとる。ということになります。#%>
+      <h5 class="text-dark bg-light p-4 mb-0">画像投稿フォーム</h5>
+      <div class="form-body p-4">
+        <% if @post_image.errors.any? %>
+          <ul class="alert alert-danger" role="alert">
+            <h6 class="alert-heading">
+              <%= @post_image.errors.count %>件のエラーが発生しました
+            </h6>
+            <% @post_image.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <%= form_with model: @post_image do |f| %>
+          <%= f.file_field :image, accept: "image/*", class: "w-100" %>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
+            </div>
+            <%= f.text_field :shop_name, class:"form-control", placeholder:"ショップ名" %>
+          </div>
+          <%= f.text_area :caption, class:"form-control", rows:"3", placeholder:"コメントここに" %>
+          <hr>
+          <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div
